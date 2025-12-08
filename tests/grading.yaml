@@ -10,39 +10,63 @@ assignment:
 checks:
   - id: instantiate
     name: "Agent Instantiation"
-    points: 20
+    points: 15
     type: instantiate
     file: solution/agent.py
   - id: swml_valid
     name: "SWML Generation"
-    points: 20
+    points: 15
     type: swml_valid
     file: solution/agent.py
   - id: func_transfer
     name: "transfer_to_department function"
-    points: 30
+    points: 20
     type: function_exists
     file: solution/agent.py
     function: transfer_to_department
-  - id: has_transfer
-    name: "Transfer Action"
-    points: 30
-    type: swml_contains
+  - id: func_check_avail
+    name: "check_availability function"
+    points: 15
+    type: function_exists
     file: solution/agent.py
-    require:
-      - text: "swml_transfer"
+    function: check_availability
+  - id: func_transfer_context
+    name: "transfer_with_context function"
+    points: 20
+    type: function_exists
+    file: solution/agent.py
+    function: transfer_with_context
+  - id: transfer_uses_connect
+    name: "Transfer uses connect() action"
+    points: 15
+    type: exec
+    file: solution/agent.py
+    function: transfer_to_department
+    args:
+      department: "sales"
+    expect:
+      stdout_contains:
+        - "connect"
 
 feedback:
   pass: |
     Excellent work! You've completed Lab 2.8: Call Transfer.
 
+    You've learned how to:
+    - Route calls to different departments
+    - Check business hours before transferring
+    - Pass caller context to transferred calls
+    - Use .connect() for phone number transfers
+
     **Next steps:**
-    - Review the concepts covered
-    - Continue to the next lab
+    - Continue to Lab 2.9: Multi-Agent Architecture
 
   fail: |
     Some checks didn't pass. Review the requirements and try again.
 
     **Tips:**
+    - Use .connect(phone_number, final=True) for transfers
+    - Check department hours before transferring
+    - Use .update_global_data() to pass context
     - Run `swaig-test solution/agent.py --list-tools` to verify functions
     - Run `swaig-test solution/agent.py --dump-swml` to check SWML

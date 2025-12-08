@@ -49,10 +49,12 @@ git push
 
 | Check | Points |
 |-------|--------|
-| Agent Instantiation | 20 |
-| SWML Generation | 20 |
-| transfer_to_department function | 30 |
-| Transfer Action | 30 |
+| Agent Instantiation | 15 |
+| SWML Generation | 15 |
+| transfer_to_department function | 20 |
+| check_availability function | 15 |
+| transfer_with_context function | 20 |
+| Transfer uses connect() action | 15 |
 | **Total** | **100** |
 
 **Passing Score:** 70%
